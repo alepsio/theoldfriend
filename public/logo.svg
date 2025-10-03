@@ -1,0 +1,30 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cerchio esterno decorativo -->
+  <circle cx="100" cy="100" r="95" stroke="#d4a574" stroke-width="2" fill="none"/>
+  <circle cx="100" cy="100" r="85" stroke="#d4a574" stroke-width="1" fill="none"/>
+  
+  <!-- Forbici stilizzate -->
+  <g transform="translate(100, 100) rotate(-45)">
+    <!-- Lama sinistra -->
+    <path d="M -5 -30 L -5 10 L -2 10 L -2 -30 Z" fill="#1a1a1a"/>
+    <!-- Lama destra -->
+    <path d="M 2 -30 L 2 10 L 5 10 L 5 -30 Z" fill="#1a1a1a"/>
+    <!-- Manico sinistro -->
+    <circle cx="-3.5" cy="20" r="8" stroke="#d4a574" stroke-width="2" fill="none"/>
+    <!-- Manico destro -->
+    <circle cx="3.5" cy="20" r="8" stroke="#d4a574" stroke-width="2" fill="none"/>
+    <!-- Perno centrale -->
+    <circle cx="0" cy="0" r="4" fill="#d4a574"/>
+  </g>
+  
+  <!-- Testo "TOF" stilizzato -->
+  <text x="100" y="155" font-family="'Playfair Display', serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#1a1a1a">
+    T O F
+  </text>
+  
+  <!-- Decorazioni angolari -->
+  <path d="M 30 30 L 30 45 M 30 30 L 45 30" stroke="#d4a574" stroke-width="2" stroke-linecap="round"/>
+  <path d="M 170 30 L 170 45 M 170 30 L 155 30" stroke="#d4a574" stroke-width="2" stroke-linecap="round"/>
+  <path d="M 30 170 L 30 155 M 30 170 L 45 170" stroke="#d4a574" stroke-width="2" stroke-linecap="round"/>
+  <path d="M 170 170 L 170 155 M 170 170 L 155 170" stroke="#d4a574" stroke-width="2" stroke-linecap="round"/>
+</svg>

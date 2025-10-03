@@ -1,0 +1,25 @@
+/* Leaflet CSS Override */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.leaflet-popup-tip {
+  background: white;
+}
+
+.custom-marker {
+  background: transparent;
+  border: none;
+  transition: transform 0.3s ease;
+}
+
+.custom-marker:hover {
+  transform: scale(1.1);
+}
