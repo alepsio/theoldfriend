@@ -60,7 +60,7 @@ npm run dev
 - **Sito Pubblico**: http://localhost:3000
 - **Admin Panel**: http://localhost:3000/admin/login
 
-### Login Admin
+### Login Admin Admin
 - Username: `admin`
 - Password: `admin123`
 
