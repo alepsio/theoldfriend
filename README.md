@@ -66,7 +66,7 @@ npm run dev
 
 ⚠️ **IMPORTANTE**: Cambia la password dopo il primo login!
 
-## 🔧 Problemi Comuni
+## 🔧 Problemi Comunis
 
 ### Errore: "Cannot connect to database"
 - Verifica che MySQL sia avviato
