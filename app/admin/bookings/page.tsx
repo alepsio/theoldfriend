@@ -206,18 +206,18 @@ export default function AdminBookings() {
             </p>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
             {bookings.map((booking, index) => (
               <motion.div
                 key={booking.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
-                className="bg-white rounded-lg shadow-md p-6"
+                className="bg-white rounded-lg shadow-md p-6 h-full"
               >
-                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+                <div className="flex flex-col justify-between h-full">
                   {/* Booking Info */}
-                  <div className="flex-1 space-y-3">
+                  <div className="space-y-3">
                     <div className="flex items-center space-x-4">
                       <span
                         className={`px-3 py-1 rounded-full text-sm font-semibold border ${getStatusColor(
@@ -249,7 +249,7 @@ export default function AdminBookings() {
                         {booking.customer_email && (
                           <div className="flex items-center text-[var(--text-secondary)] text-sm">
                             <FaEnvelope className="mr-2" />
-                            <span>{booking.customer_email}</span>
+                            <span className="break-all">{booking.customer_email}</span>
                           </div>
                         )}
                       </div>
@@ -283,14 +283,14 @@ export default function AdminBookings() {
 
                   {/* Actions */}
                   {booking.status === 'pending' && (
-                    <div className="flex lg:flex-col space-x-2 lg:space-x-0 lg:space-y-2 mt-4 lg:mt-0 lg:ml-4">
+                    <div className="flex space-x-2 mt-4">
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() =>
                           updateBookingStatus(booking.id, 'confirmed')
                         }
-                        className="flex-1 lg:flex-none bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors flex items-center justify-center"
+                        className="flex-1 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors flex items-center justify-center"
                       >
                         <FaCheck className="mr-2" />
                         Conferma
@@ -301,7 +301,7 @@ export default function AdminBookings() {
                         onClick={() =>
                           updateBookingStatus(booking.id, 'cancelled')
                         }
-                        className="flex-1 lg:flex-none bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors flex items-center justify-center"
+                        className="flex-1 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors flex items-center justify-center"
                       >
                         <FaTimes className="mr-2" />
                         Rifiuta
@@ -310,7 +310,7 @@ export default function AdminBookings() {
                   )}
 
                   {booking.status === 'confirmed' && (
-                    <div className="mt-4 lg:mt-0 lg:ml-4">
+                    <div className="mt-4">
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
