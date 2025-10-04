@@ -77,48 +77,53 @@ export async function GET(req: NextRequest) {
     const slots = [];
     let currentTime = parse(start_time, 'HH:mm:ss', new Date());
     const endTime = parse(end_time, 'HH:mm:ss', new Date());
+    const now = new Date();
+    const isToday = format(selectedDate, 'yyyy-MM-dd') === format(now, 'yyyy-MM-dd');
 
     while (isBefore(currentTime, endTime)) {
       const timeString = format(currentTime, 'HH:mm');
-      
-      // Verifica se lo slot è disponibile
       let isAvailable = true;
-      
-      for (const booking of bookingsRows) {
-        const bookingStart = parse(booking.booking_time, 'HH:mm:ss', new Date());
-        const bookingEnd = addMinutes(bookingStart, booking.duration);
-        const slotEnd = addMinutes(currentTime, serviceDuration);
 
-        // Controlla se c'è sovrapposizione
-        if (
-          (isAfter(currentTime, bookingStart) || currentTime.getTime() === bookingStart.getTime()) &&
-          isBefore(currentTime, bookingEnd)
-        ) {
-          isAvailable = false;
-          break;
-        }
-
-        if (
-          isAfter(slotEnd, bookingStart) &&
-          (isBefore(slotEnd, bookingEnd) || slotEnd.getTime() === bookingEnd.getTime())
-        ) {
-          isAvailable = false;
-          break;
-        }
-
-        if (
-          (isBefore(currentTime, bookingStart) || currentTime.getTime() === bookingStart.getTime()) &&
-          (isAfter(slotEnd, bookingEnd) || slotEnd.getTime() === bookingEnd.getTime())
-        ) {
-          isAvailable = false;
-          break;
-        }
+      // 1. Controlla se lo slot è nel passato
+      if (isToday && isBefore(parse(timeString, 'HH:mm', selectedDate), now)) {
+        isAvailable = false;
       }
 
-      // Verifica che lo slot finisca prima della chiusura
+      // 2. Controlla che lo slot finisca prima dell'orario di chiusura
       const slotEnd = addMinutes(currentTime, serviceDuration);
       if (isAfter(slotEnd, endTime)) {
         isAvailable = false;
+      }
+
+      // 3. Controlla le sovrapposizioni con le prenotazioni esistenti (solo se ancora disponibile)
+      if (isAvailable) {
+        for (const booking of bookingsRows) {
+          const bookingStart = parse(booking.booking_time, 'HH:mm:ss', new Date());
+          const bookingEnd = addMinutes(bookingStart, booking.duration);
+
+          // Controlla se c'è sovrapposizione
+          if (
+            (isAfter(currentTime, bookingStart) || currentTime.getTime() === bookingStart.getTime()) &&
+            isBefore(currentTime, bookingEnd)
+          ) {
+            isAvailable = false;
+            break;
+          }
+          if (
+            isAfter(slotEnd, bookingStart) &&
+            (isBefore(slotEnd, bookingEnd) || slotEnd.getTime() === bookingEnd.getTime())
+          ) {
+            isAvailable = false;
+            break;
+          }
+          if (
+            (isBefore(currentTime, bookingStart) || currentTime.getTime() === bookingStart.getTime()) &&
+            (isAfter(slotEnd, bookingEnd) || slotEnd.getTime() === bookingEnd.getTime())
+          ) {
+            isAvailable = false;
+            break;
+          }
+        }
       }
 
       slots.push({

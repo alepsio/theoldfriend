@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { FaAward, FaClock, FaUsers, FaHeart } from 'react-icons/fa';
+import Image from 'next/image';
 
 const About = () => {
   const ref = useRef(null);
@@ -60,14 +61,14 @@ const About = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="vintage-border"
           >
-            <div className="aspect-[4/3] bg-gradient-to-br from-[var(--accent)] to-[var(--secondary)] rounded-lg overflow-hidden shadow-2xl">
-              <div className="w-full h-full flex items-center justify-center text-white text-6xl">
-                {/* Placeholder per immagine */}
-                <div className="text-center">
-                  <FaUsers className="mx-auto mb-4" />
-                  <p className="text-xl font-light">La Nostra Storia</p>
-                </div>
-              </div>
+            <div className="aspect-[4/3] relative rounded-lg overflow-hidden shadow-2xl">
+              <Image
+                src="/about.jpg"
+                alt="The Old Friend Barbershop"
+                layout="fill"
+                objectFit="cover"
+                className="transform hover:scale-105 transition-transform duration-500"
+              />
             </div>
           </motion.div>
 

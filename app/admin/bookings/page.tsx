@@ -310,16 +310,28 @@ export default function AdminBookings() {
                   )}
 
                   {booking.status === 'confirmed' && (
-                    <div className="mt-4">
+                    <div className="flex space-x-2 mt-4">
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() =>
                           updateBookingStatus(booking.id, 'completed')
                         }
-                        className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+                        className="flex-1 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors flex items-center justify-center"
                       >
-                        Segna come Completata
+                        <FaCheck className="mr-2" />
+                        Completata
+                      </motion.button>
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() =>
+                          updateBookingStatus(booking.id, 'cancelled')
+                        }
+                        className="flex-1 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors flex items-center justify-center"
+                      >
+                        <FaTimes className="mr-2" />
+                        Cancella
                       </motion.button>
                     </div>
                   )}
